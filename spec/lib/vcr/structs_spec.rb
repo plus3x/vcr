@@ -388,6 +388,11 @@ module VCR
     let(:interaction) { VCR::HTTPInteraction.new(request, response) }
     subject { HTTPInteraction::HookAware.new(interaction) }
 
+    it 'response can be marshaled(supporting marshal caching)' do
+      marshaled_response = Marshal.dump(response)
+      expect(Marshal.load(marshaled)).to be_a VCR::Response
+    end
+
     describe '#ignored?' do
       it 'returns false by default' do
         should_not be_ignored

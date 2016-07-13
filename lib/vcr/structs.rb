@@ -110,7 +110,7 @@ module VCR
 
       def normalize_headers
         new_headers = {}
-        @normalized_header_keys = Hash.new {|h,k| k }
+        @normalized_header_keys = {}
 
         headers.each do |k, v|
           val_array = case v
